@@ -6,8 +6,13 @@ while orders_runtot != order_finished:
     finished = input('have you finished for they day\n if yes then enter (y)')
     if finished == 'y':
         print ('your daily taking today was ',dailytakings)
-        # profit = eval('please enter the profit made today by calculating 10% of daily takings')
-        profit = dailytakings * 0.1
+        while True:
+            try:
+                profit_amt = int(input('what percent is profit?'))
+                break
+            except ValueError:
+                print('Please enter a number')
+        profit = dailytakings * profit_amt/100
         print(f'your profit was {profit}')
         orders_runtot = orders_runtot + 1
     else:
