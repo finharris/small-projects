@@ -14,7 +14,7 @@ def TaylorE(x, n):
 
 def main():
   print(
-    TaylorE(1,10)
+          TaylorE(int(input("x:")),int(input("n:")))
   )
 
 
