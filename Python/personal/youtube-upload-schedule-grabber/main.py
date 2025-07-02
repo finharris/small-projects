@@ -4,7 +4,7 @@ from collections import Counter
 import os
 
 # Replace with your own API key and Channel ID
-API_KEY = "AIzaSyBAPMsA3vKgDNvSnJ7_h1mjKEym7hbPRR4"
+API_KEY = ""
 CHANNEL_ID = "UCWPL3MXXP67-QTgLnIotrNQ"
 
 def get_video_upload_dates(channel_id, days=30):
