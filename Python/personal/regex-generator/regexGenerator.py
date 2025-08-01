@@ -1,9 +1,11 @@
 import pyperclip # type: ignore
+import os
 
 def menu():
   menu = [
     ("Unique Items (e.g. This, That, The Other)", uniqueItems),
-    ("Semi-similar items (e.g. 1 Star, 2 Star, 3 Star)", semiSimilar)
+    ("Semi-similar items (e.g. 1 Star, 2 Star, 3 Star)", semiSimilar),
+    ("CSV List (e.g. a .csv file containing 'Item 1, Item2, Item 3')", csvList)
   ]
   
   # List out all the menu options
@@ -17,7 +19,9 @@ def menu():
     if selection.isdigit() and 1 <= int(selection) <= len(menu):
       return menu[int(selection)-1][1]()
     else:
-      print("Invalid selection. Please try again.")
+      os.system("clear")
+      print("--Invalid selection. Please try again--\n")
+
 
 def getItemsFromUser(additionalText=""):
   items = []
@@ -27,6 +31,7 @@ def getItemsFromUser(additionalText=""):
     item = input("Item: ")
     items.append(item)
   return items
+
 
 def convertItemsToRegex(items):
   regex = "("
@@ -61,12 +66,31 @@ def semiSimilar():
       results.append(result)
   
   return convertItemsToRegex(results)
-  
+
+
+def csvList():
+  # csv contents: item 1, item 2, item 3, item 4
+  filename = input("Enter the name of the CSV file (e.g. items.csv): ")
+  filepath = os.path.join(os.path.dirname(__file__), filename)
+  try:
+    with open(filepath, "r", encoding="utf-8") as f:
+      lines = f.readlines()
+      if len(lines) != 1:
+        print("Error: CSV file must contain only one line with items separated by commas.")
+        return
+      content = lines[0].strip()
+      # Split by comma and strip whitespace from each item
+      items = [item.strip() for item in content.split(",")]
+      return convertItemsToRegex(items)
+  except FileNotFoundError:
+    print("Error: File not found. Please make sure the file is in the same directory as this script.")
+    return
+
 
 if __name__ == "__main__":
   output = menu()
   if output != None:
-    print(output)
+    print(f"\n\n --OUTPUT-- \n\n{output}")
     pyperclip.copy(output)
     print("\n\nOUTPUT COPIED TO CLIPBOARD")
   # semiSimilar()
