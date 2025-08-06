@@ -57,7 +57,6 @@ const App = () => {
         deleteItem={deleteItem}
         clearList={clearList}
       />
-      {/* <StackConverter items={items} /> */}
     </div>
   );
 };

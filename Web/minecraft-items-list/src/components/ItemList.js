@@ -22,7 +22,18 @@ const ItemList = ({ items, markCollected, deleteItem, clearList }) => {
               className={item.collected ? "collected" : ""}
               onClick={() => markCollected(items.indexOf(item))}
               style={{ cursor: "pointer", position: "relative" }}>
-              <b>{item.name}</b>: {stacks} Stacks {remainder} Items ({item.quantity})
+              <b>{item.name}</b>:<> </>
+              {stacks > 0 && (
+                <>
+                  {stacks} {stacks === 1 ? "Stack" : "Stacks"}
+                </>
+              )}
+              {remainder > 0 && (
+                <>
+                  {remainder} {remainder === 1 ? "Item" : "Items"}
+                </>
+              )}
+              <> </>({item.quantity})
               <button
                 onClick={(e) => {
                   e.stopPropagation();
