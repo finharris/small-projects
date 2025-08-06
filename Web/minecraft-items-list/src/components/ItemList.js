@@ -10,6 +10,11 @@ const ItemList = ({ items, markCollected, deleteItem, clearList }) => {
     return a.collected ? 1 : -1;
   });
 
+  // Calculate percentage of collected items
+  const total = items.length;
+  const collected = items.filter((item) => item.collected).length;
+  const percentCollected = total === 0 ? 0 : Math.round((collected / total) * 100);
+
   return (
     <div className='item-list-container'>
       <h2>Required items</h2>
@@ -46,6 +51,12 @@ const ItemList = ({ items, markCollected, deleteItem, clearList }) => {
           );
         })}
       </ul>
+      <progress
+        name='collected-progress-bar'
+        className='collected-progress-bar'
+        value={percentCollected}
+        max={100}
+        data-percent={percentCollected}></progress>
       <button className='button clear-list-button' onClick={clearList}>
         Clear list
       </button>
