@@ -1,7 +1,7 @@
 import React from "react";
 import { convertToStacks } from "../utils/converter";
 
-const ItemList = ({ items, markCollected, deleteItem }) => {
+const ItemList = ({ items, markCollected, deleteItem, clearList }) => {
   // Sort: uncollected by quantity desc, collected at bottom
   const sorted = [...items].sort((a, b) => {
     if (a.collected === b.collected) {
@@ -11,9 +11,9 @@ const ItemList = ({ items, markCollected, deleteItem }) => {
   });
 
   return (
-    <div className='item-list'>
+    <div className='item-list-container'>
       <h2>Required items</h2>
-      <ul>
+      <ul className='item-list'>
         {sorted.map((item, idx) => {
           const { stacks, remainder } = convertToStacks(item.quantity);
           return (
@@ -35,6 +35,9 @@ const ItemList = ({ items, markCollected, deleteItem }) => {
           );
         })}
       </ul>
+      <button className='button clear-list-button' onClick={clearList}>
+        Clear list
+      </button>
     </div>
   );
 };

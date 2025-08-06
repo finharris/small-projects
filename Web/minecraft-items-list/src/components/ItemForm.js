@@ -9,7 +9,7 @@ const ItemForm = ({ addItem }) => {
     e.preventDefault();
     if (itemName.trim() === "") return;
 
-    addItem({ name: itemName, quantity: parseInt(itemQuantity) });
+    addItem({ name: itemName, quantity: parseInt(itemQuantity), collected: false });
     setItemName("");
     setItemQuantity(1);
     // Focus the item name input after adding
@@ -34,7 +34,7 @@ const ItemForm = ({ addItem }) => {
         value={itemQuantity}
         onChange={(e) => setItemQuantity(e.target.value)}
       />
-      <button type='submit' className='add-item-button'>
+      <button type='submit' className='button add-item-button'>
         Add Item
       </button>
     </form>

@@ -35,11 +35,28 @@ const App = () => {
     setItems(items.filter((_, i) => i !== idx));
   };
 
+  const clearList = () => {
+    const response = window.confirm(
+      "WARN: Clearing the list is permanent and irreversable\n\nAre you sure you want to continue?"
+    );
+    if (response) {
+      localStorage.setItem(STORAGE_KEY, "{}");
+      setItems([]);
+    } else {
+      console.log(response, "User cancelled clearing list.");
+    }
+  };
+
   return (
     <div>
       <h1>Minecraft Items List</h1>
       <ItemForm addItem={addItem} />
-      <ItemList items={items} markCollected={markCollected} deleteItem={deleteItem} />
+      <ItemList
+        items={items}
+        markCollected={markCollected}
+        deleteItem={deleteItem}
+        clearList={clearList}
+      />
       {/* <StackConverter items={items} /> */}
     </div>
   );
