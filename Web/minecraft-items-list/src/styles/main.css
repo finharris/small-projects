@@ -29,8 +29,7 @@ form {
   margin-bottom: 20px;
 }
 
-input[type="text"],
-input[type="number"] {
+.input {
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #ccc;
@@ -48,10 +47,8 @@ input[type="number"] {
   transition: background-color 100ms ease-in;
 }
 
-.add-item-button {
-  &:hover {
-    background-color: #218838;
-  }
+.add-item-button :hover {
+  background-color: #218838;
 }
 
 .item-list-container {

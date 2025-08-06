@@ -17,7 +17,7 @@ const ItemList = ({ items, markCollected, deleteItem, clearList }) => {
 
   return (
     <div className='item-list-container'>
-      <h2>Required items</h2>
+      <h2>Required items - {total}</h2>
       <ul className='item-list'>
         {sorted.map((item, idx) => {
           const { stacks, remainder } = convertToStacks(item.quantity);

@@ -27,12 +27,14 @@ const ItemForm = ({ addItem }) => {
         onChange={(e) => setItemName(e.target.value)}
         required
         ref={nameInputRef}
+        className='input'
       />
       <input
         type='number'
         min='1'
         value={itemQuantity}
         onChange={(e) => setItemQuantity(e.target.value)}
+        className='input'
       />
       <button type='submit' className='button add-item-button'>
         Add Item
